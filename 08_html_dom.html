@@ -1,0 +1,36 @@
+<!-- angular toturial: https://www.tutorialspoint.com/angularjs/index.htm -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AnguarJS HTML DOM</title>
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"> </script>
+	</head>
+	<body>
+		<h1>AngularJS Sample Application</h1>
+
+		<div ng-app = "">
+			<table border = "0">
+				<tr>
+					<td><input type = "checkbox" ng-model = "enableDisableButton">Disable Button</td>
+					<td><button ng-disabled = "enableDisableButton">Click Me!</button></td>
+				</tr>
+
+				<tr>
+					<td><input type = "checkbox" ng-model = "showHide1">Show Button</td>
+					<td><button ng-show = "showHide1">Click Me!</button></td>
+				</tr>
+
+				<tr>
+					<td><input type = "checkbox" ng-model = "showHide2">Hide Button</td>
+					<td><button ng-hide = "showHide2">Click Me!</button></td>
+				</tr>
+
+				<tr>
+					<td><p>Total click: {{ clickCunter }}</p></td>
+					<td><button ng-click = "clickCunter = clickCunter + 1">Click Me!</button></td>
+				</td>
+			</table>
+		</div>
+	</body>
+</html>

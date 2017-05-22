@@ -1,0 +1,69 @@
+<!-- angular toturial: https://www.tutorialspoint.com/angularjs/index.htm -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AngularJS Forms</title>
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"> </script>
+		<link rel = "style" type = "text/css" href = "css/style.css">
+	</head>
+	<body>
+		<h1>AngularJS Sample Application</h1>
+
+		<div ng-app = "mainApp" ng-controller = "studentController">
+			<form name = "studentForm" novalidate>
+				<table border="0">
+					<tr>
+						<td>Enter first name:</td>
+						<td><input name = "firstname" type = "text" ng-model = "firstName" requred>
+							<span style = "colour: #F00" ng-show = "studentForm.firstName.$dirty && studentForm.firstName.$invalid">
+								<span ng-show = "studentForm.firstName.$error.required">First Name is required.</span>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Enter last name:</td>
+						<td><input name = "lastname" type = "text" ng-model = "lastName" requred>
+							<span style = "colour: #F00" ng-show = "studentForm.lastName.$dirty && studentForm.lastName.$invalid">
+								<span ng-show = "studentForm.lastName.$error.required">Last Name is required.</span>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Email:</td>
+						<td><input name = "email" type = "text" ng-model = "email" requred>
+							<span style = "colour: #F00" ng-show = "studentForm.email.$dirty && studentForm.email.$invalid">
+								<span ng-show = "studentForm.email.$error.required">Email is required.</span>
+							</span>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<button ng-click = "reset()">Reset</button>
+						</td>
+						<td>
+							<button ng-disabled = "studentForm.fistname.$dirty && studentForm.$invalid || studentForm.lastname.$dirty && student.lastname.$invalid || studentForm.email.$dirty && studentForm.email.$invalid" ng-click = "submit()">Submit</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+		<script>
+			var mainApp = angular.module("mainApp", [])
+
+			mainApp.controller("studentController", function($scope) {
+				$scope.reset = function() {
+					$scope.firstName = "Manesh"
+					$scope.lastName = "Parashar"
+					$scope.email = "ManeshParashar@toturialspoint.com"
+				}
+
+				$scope.reset()
+			})
+		</script>
+	</body>
+</html>

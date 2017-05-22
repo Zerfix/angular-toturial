@@ -1,0 +1,83 @@
+<!-- angular toturial: https://www.tutorialspoint.com/angularjs/index.htm -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AngularJS Filter</title>
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"> </script>
+
+		<script>
+			var mainApp = angular.module("mainApp", [])
+
+			mainApp.controller("studentController", function($scope) {
+				$scope.student = {
+					firstName: "Manesh",
+					lastName: "Parashar",
+					fees: 500,
+
+					subjects:[
+						{name: "Physiscs", marks: 70},
+						{name: "Chemestry", marks: 80},
+						{name: "Math", marks: 65}
+					],
+
+					fullName: function() {
+						var studentObject
+						studentObject = $scope.student
+						return studentObject.firstName + " " + studentObject.lastName
+					}
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<h1>AngularJS Sample Application</h1>
+		<div ng-app = "mainApp" ng-controller = "studentController">
+			<table border = "0">
+				<tr>
+					<td>Enter first name:</td>
+					<td><input type = "text" ng-model = "student.firstName"></td>
+				</tr>
+
+				<tr>
+					<td>Enter last name:</td>
+					<td><input type = "text" ng-model = "student.lastName"></td>
+				</tr>
+
+				<tr>
+					<td>Enter fees: </td>
+					<td><input type = "text" ng-model = "student.fees"></td>
+				</tr>
+
+				<tr>
+					<td>Enter subject: </td>
+					<td><input type = "text" ng-model = "subjectName"></td>
+				</tr>
+			</table>
+			<br>
+			<table border = "0">
+				<tr>
+					<td>Name in upper case: </td><td>{{student.fullName() | uppercase}}</td>
+				</tr>
+
+				<tr>
+					<td>Name in lower case: </td><td>{{student.fullName() | lowercase}}</td>
+				</tr>
+
+				<tr>
+					<td>fees: </td><td>{{student.fees | currency}}</td>
+				</tr>
+
+				<tr>
+					<td>
+						<ul>
+							<li ng-repeat = "subject in student.subjects | filter: subjectName | orderBy: 'marks'">
+								{{subject.name + ", marks" + subject.marks}}
+							</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
