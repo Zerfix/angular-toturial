@@ -10,24 +10,51 @@
 		<h1>AngularJS Sample Applications</h1>
 
 		<div ng-app = "mainApp" ng-controller = "CalcController">
-			<p>Enter a number: <imput type = "number" ng-model = "number"></p>
+			<p>Enter a number: <input type = "number" ng-model = "number"></p>
 			<button ng-click = "square()">X<sup>2</sup></button>
 			<p>Result: {{ result }}</p>
 		</div>
 
 		<script>
-			var mainApp = angular.module("mainApp")
+			var mainApp = angular.module("mainApp", [])
 
 			mainApp.config( function($provide) {
 				$provide.provider("MathService", function() {
 					this.$get = function() {
 						var factory = {}
 
-						factory.multiply = factory(a, b) {
-							return a*
+						factory.multiply = function(a, b) {
+							return a * b
 						}
+						return factory
 					}
 				})
+			})
+
+			mainApp.value("defaultInput", 5)
+
+			mainApp.factory('MathService', function() {
+				var factory = {}
+
+				factory.multiply = function(a, b) {
+					return a * b
+				}
+				return factory
+			})
+
+			mainApp.service("CalcService", function(MathService) {
+				this.square = function(a) {
+					return MathService.multiply(a, a)
+				}
+			})
+
+			mainApp.controller("CalcController", function($scope, CalcService, defaultInput) {
+				$scope.number = defaultInput
+				$scope.result = CalcService.square($scope.number)
+
+				$scope.square = function() {
+					$scope.result = CalcService.square($scope.number)
+				}
 			})
 		</script>
 	</body>

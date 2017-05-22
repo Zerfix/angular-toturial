@@ -9,6 +9,7 @@
 	</head>
 	<body>
 		<h1>AngularJS Sample Application</h1>
+
 		<div ng-app = "mainApp">
 			<p><a href = "#addStudent">Add Student</a></p>
 			<p><a href = "#viewStudents">View Students</a></p>
@@ -22,6 +23,7 @@
 			<script type = "text/ng-template" id = "viewStudents.html">
 				<h2>View Students</h2>
 				{{ message }}
+			</script>
 		</div>
 
 		<script>
@@ -37,12 +39,12 @@
 				when('/viewStudent', {
 					templateUrl: 'viewStudent.html',
 					controller: 'ViewStudentController'
-				})
+				}).
 
 				otherwise({
 					redirectTo: '/addStudent'
 				})
-			})
+			}])
 
 			mainApp.controller("AddStudentController", function($scope) {
 				$scope.message = "This Page will be used to display add student form"
